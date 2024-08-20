@@ -7,10 +7,10 @@ const app = express();
 
 app.use(bodyParser.json());
 
-// Sync models with the database
-sequelize.sync({ force: true }).then(() => {
+// Sync models with the database (use { force: true } carefully)
+sequelize.sync().then(() => {
   console.log('Database & tables created!');
-});
+}).catch(err => console.error('Error syncing database:', err));
 
 // Routes
 app.use('/api', transferRoute);

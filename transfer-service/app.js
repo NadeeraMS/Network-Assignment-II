@@ -2,6 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const sequelize = require('./config/db');
 const transferRoute = require('./routes/transfer');
+const accountRoute = require('./routes/accounts'); 
+
+
+
 
 const app = express();
 
@@ -14,6 +18,7 @@ sequelize.sync().then(() => {
 
 // Routes
 app.use('/api', transferRoute);
+app.use('/api', accountRoute);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
